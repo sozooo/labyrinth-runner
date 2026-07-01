@@ -1,3 +1,4 @@
+using System;
 using Infrastructure.Input;
 using Zenject;
 
@@ -7,7 +8,11 @@ namespace Infrastructure.Installers
     {
         public override void InstallBindings()
         {
-            Container.Bind<PlayerInputHandler>().FromNew().AsSingle().NonLazy();
+            Container
+                .Bind(typeof(IPlayerInputHandler), typeof(IInitializable), typeof(IDisposable))
+                .To<PlayerInputHandler>()
+                .AsSingle()
+                .NonLazy();
         }
     }
 }

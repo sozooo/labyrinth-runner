@@ -6,12 +6,12 @@ namespace Application.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [Inject] private PlayerInputHandler _inputHandler;
+        private IPlayerInputHandler _inputHandler;
         private Transform _transform;
         
-        // [Inject]
-        // private void Construct(IPlayerInputHandler inputHandler) => 
-        //     _inputHandler = inputHandler;
+        [Inject]
+        private void Construct(IPlayerInputHandler inputHandler) => 
+            _inputHandler = inputHandler;
         
         private void Start() => 
             _transform = transform;
@@ -24,7 +24,7 @@ namespace Application.Player
             Vector3 moveDirection = 
                 transform.right * _inputHandler.MoveDirection.x + transform.forward * _inputHandler.MoveDirection.y;
             
-            _transform.Translate(transform.position + moveDirection);
+            _transform.Translate(moveDirection * (Time.deltaTime * (_inputHandler.IsRunning ? 3 : 1)), Space.World);
         }
     }
 }
