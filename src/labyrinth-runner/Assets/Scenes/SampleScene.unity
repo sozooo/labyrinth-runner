@@ -2327,9 +2327,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481945152}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3.030303, y: 3.030303, z: 3.030303}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 45405485}
@@ -2348,7 +2348,7 @@ Transform:
   - {fileID: 1097220311}
   - {fileID: 1226285726}
   - {fileID: 1444696852}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1067982607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &508227063
 GameObject:
@@ -6218,6 +6218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1067982607}
+  - component: {fileID: 1067982608}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -6240,8 +6241,42 @@ Transform:
   m_Children:
   - {fileID: 726085446}
   - {fileID: 400955239}
+  - {fileID: 481945153}
+  - {fileID: 1487190002}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1067982608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067982606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: cdbfdcb1f074a754c9e203c3f0b7fdf5, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &1071897242
 GameObject:
   m_ObjectHideFlags: 0
@@ -6702,7 +6737,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Infrastructure.Installers.GameInstaller
   _gemPrefab: {fileID: 1311676079619618908, guid: a81644c0d262ac94c8a78a4b54ee31ff, type: 3}
+  _enemyPrefab: {fileID: 3520904188107087204, guid: 20846e7be1327fc4595a8b070cbc5daf, type: 3}
   _diamondSpawnPointsParent: {fileID: 481945153}
+  _enemySpawnPointsParent: {fileID: 1487190002}
   _doors:
   - {fileID: 988643077}
   _startPanel: {fileID: 747857978}
@@ -9037,9 +9074,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487190001}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3.030303, y: 3.030303, z: 3.030303}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 801156231}
@@ -9048,7 +9085,7 @@ Transform:
   - {fileID: 1786813011}
   - {fileID: 1759368923}
   - {fileID: 407346916}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1067982607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1507088483
 GameObject:
@@ -12652,8 +12689,6 @@ SceneRoots:
   - {fileID: 1067982607}
   - {fileID: 1151243458}
   - {fileID: 3143514948936695085}
-  - {fileID: 481945153}
-  - {fileID: 1487190002}
   - {fileID: 966322526}
   - {fileID: 1178418607}
   - {fileID: 988643074}

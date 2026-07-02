@@ -1,4 +1,6 @@
 using Application.Collectibles;
+using Application.Enemy;
+using Application.Player;
 using Application.States;
 using Application.UI;
 using Infrastructure.Input;
@@ -13,7 +15,9 @@ namespace Infrastructure.Installers
     public class BootstrapInstaller : MonoInstaller
     {
         [SerializeField] private GameObject _gemPrefab;
+        [SerializeField] private GameObject _enemyPrefab;
         [SerializeField] private Transform _diamondSpawnPointsParent;
+        [SerializeField] private Transform _enemySpawnPointsParent;
         [SerializeField] private Door[] _doors;
         
         [SerializeField] private StartPanel _startPanel;
@@ -26,6 +30,8 @@ namespace Infrastructure.Installers
             InstallPlayerInputBindings();
             InstallStateMachineBindings();
             InstallUIBindings();
+            InstallPlayerBindings();
+            InstallEnemyBindings();
 
             var options = Container.BindMessagePipe();
             InstallDiamondBindings(options);
@@ -50,6 +56,27 @@ namespace Infrastructure.Installers
             Container.Bind<GameplayPanel>().FromInstance(_gameplayPanel).AsSingle();
             Container.Bind<WinPanel>().FromInstance(_winPanel).AsSingle();
             Container.Bind<LosePanel>().FromInstance(_losePanel).AsSingle();
+        }
+
+        private void InstallPlayerBindings()
+        {
+            Container.Bind<PlayerBehaviour>().FromComponentInHierarchy().AsCached();
+        }
+
+        private void InstallEnemyBindings()
+        {
+            Container.Bind<Vector3[]>()
+                .WithId("PatrolPoints")
+                .FromInstance(ExtractChildPositions(_diamondSpawnPointsParent))
+                .AsCached();
+
+            Container.BindFactory<EnemyBehaviour, EnemyBehaviour.Factory>()
+                .FromComponentInNewPrefab(_enemyPrefab)
+                .UnderTransformGroup("Enemies");
+
+            Container.Bind<EnemySpawner>()
+                .AsSingle()
+                .WithArguments(ExtractChildPositions(_enemySpawnPointsParent));
         }
 
         private void InstallDiamondBindings(MessagePipeOptions options)

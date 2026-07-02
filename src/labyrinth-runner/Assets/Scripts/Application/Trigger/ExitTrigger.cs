@@ -15,7 +15,7 @@ namespace Application.Trigger
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<PlayerMovement>() != null)
+            if (other.TryGetComponent<PlayerBehaviour>(out _))
                 _stateMachine.Enter<States.WinState>();
         }
     }

@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 6924342134373307463}
   - component: {fileID: 2288919616741358224}
   - component: {fileID: 4640032628951779431}
+  - component: {fileID: 3753594363128780509}
   - component: {fileID: 7310905006018365472}
   - component: {fileID: 7682240303620051233}
   m_Layer: 0
@@ -214,6 +215,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc1a7c70cfc12b4c9f8315c79bec2f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Application.Collectibles.DiamondCollector
+--- !u!114 &3753594363128780509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586082651674119854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593f3583825c7d041a104d9f181b770d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Application.Player.PlayerBehaviour
 --- !u!136 &7310905006018365472
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -10,9 +10,10 @@ namespace sozooo.GameStateMachine.Factory
         public StateFactory(IInstantiator resolver) => 
             _resolver = resolver;
 
-        public T GetState<T>() where T : class, IExitableState
-        {
-            return _resolver.Instantiate<T>();
-        }
+        public T GetState<T>() where T : class, IExitableState =>
+            _resolver.Instantiate<T>();
+
+        public T GetState<T>(object[] args) where T : class, IExitableState =>
+            _resolver.Instantiate<T>(args);
     }
 }
