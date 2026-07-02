@@ -1,3 +1,4 @@
+using Configs;
 using System.Linq;
 using MessagePipe;
 using UnityEngine;
@@ -10,20 +11,24 @@ namespace Application.Collectibles
         private readonly Diamond.Factory _diamondFactory;
         private readonly Vector3[] _spawnPoints;
         private readonly IBufferedPublisher<DiamondsSpawnedMessage> _publisher;
+        private readonly GameplayConfig _config;
 
         public DiamondSpawner(
             Vector3[] spawnPoints,
             Diamond.Factory diamondFactory,
-            IBufferedPublisher<DiamondsSpawnedMessage> publisher)
+            IBufferedPublisher<DiamondsSpawnedMessage> publisher,
+            GameplayConfig config)
         {
             _spawnPoints = spawnPoints;
             _diamondFactory = diamondFactory;
             _publisher = publisher;
+            _config = config;
         }
 
         public void Spawn()
         {
-            int count = Random.Range(0, _spawnPoints.Length / 2);
+            int count = Random.Range(_config.DiamondCountRange.x,
+                Mathf.Min(_config.DiamondCountRange.y, _spawnPoints.Length));
 
             _spawnPoints.OrderBy(_ => Random.value)
                 .Take(count)

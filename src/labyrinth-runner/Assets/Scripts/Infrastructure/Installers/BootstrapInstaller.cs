@@ -3,6 +3,7 @@ using Application.Enemy;
 using Application.Player;
 using Application.States;
 using Application.UI;
+using Configs;
 using Infrastructure.Input;
 using MessagePipe;
 using sozooo.GameStateMachine.Factory;
@@ -27,6 +28,7 @@ namespace Infrastructure.Installers
 
         public override void InstallBindings()
         {
+            InstallConfigBindings();
             InstallPlayerInputBindings();
             InstallStateMachineBindings();
             InstallUIBindings();
@@ -37,6 +39,13 @@ namespace Infrastructure.Installers
             InstallDiamondBindings(options);
 
             Container.BindInterfacesAndSelfTo<DoorOpener>().AsSingle().WithArguments(_doors);
+        }
+
+        private void InstallConfigBindings()
+        {
+            Container.Bind<EnemyConfig>().FromResources("Configs/EnemyConfig").AsSingle();
+            Container.Bind<PlayerConfig>().FromResources("Configs/PlayerConfig").AsSingle();
+            Container.Bind<GameplayConfig>().FromResources("Configs/GameplayConfig").AsSingle();
         }
 
         private void InstallPlayerInputBindings() =>

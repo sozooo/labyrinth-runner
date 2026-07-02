@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+using System.Linq;
+using Configs;
 using UnityEngine;
 
 namespace Application.Enemy
@@ -7,22 +8,30 @@ namespace Application.Enemy
     {
         private readonly EnemyBehaviour.Factory _enemyFactory;
         private readonly Vector3[] _spawnPoints;
-        private readonly List<EnemyBehaviour> _spawnedEnemies = new();
+        private readonly GameplayConfig _config;
+        private readonly System.Collections.Generic.List<EnemyBehaviour> _spawnedEnemies = new();
 
-        public EnemySpawner(Vector3[] spawnPoints, EnemyBehaviour.Factory enemyFactory)
+        public EnemySpawner(Vector3[] spawnPoints, EnemyBehaviour.Factory enemyFactory, GameplayConfig config)
         {
             _spawnPoints = spawnPoints;
             _enemyFactory = enemyFactory;
+            _config = config;
         }
 
         public void Spawn()
         {
-            foreach (Vector3 point in _spawnPoints)
-            {
-                var enemy = _enemyFactory.Create();
-                enemy.transform.position = point;
-                _spawnedEnemies.Add(enemy);
-            }
+            int count = Random.Range(_config.EnemyCountRange.x,
+                Mathf.Min(_config.EnemyCountRange.y, _spawnPoints.Length));
+
+            _spawnPoints.OrderBy(_ => Random.value)
+                .Take(count)
+                .ToList()
+                .ForEach(point =>
+                {
+                    var enemy = _enemyFactory.Create();
+                    enemy.transform.position = point;
+                    _spawnedEnemies.Add(enemy);
+                });
         }
 
         public void DespawnAll()
