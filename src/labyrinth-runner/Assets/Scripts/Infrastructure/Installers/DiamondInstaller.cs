@@ -1,4 +1,4 @@
-using Application.Collectibles;
+using Application.Gameplay.Collectibles;
 using UnityEngine;
 using Zenject;
 
@@ -31,3 +31,4 @@ namespace Infrastructure.Installers
         }
     }
 }
+

@@ -1,0 +1,20 @@
+{
+    "name": "Application.GameFlow",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c7c4534f035e86b42a100637d28cf99d",
+        "GUID:2fb9fc9949844d04b80276c2e1fbdcd5",
+        "GUID:29c32cdf604437946998e7a6d949c55f",
+        "GUID:08b38f39e2d9e594389b7a4cf4c2c338",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

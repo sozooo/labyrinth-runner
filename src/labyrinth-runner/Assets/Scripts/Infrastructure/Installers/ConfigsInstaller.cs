@@ -1,4 +1,4 @@
-using Configs;
+using Application.Core.Configs;
 using Zenject;
 
 namespace Infrastructure.Installers
@@ -13,3 +13,4 @@ namespace Infrastructure.Installers
         }
     }
 }
+

@@ -1,5 +1,7 @@
-using Application.Collectibles;
-using Application.UI;
+using Application.Gameplay.Collectibles;
+using Application.GameFlow.UI;
+using Application.GameFlow.UI.Panels;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -20,10 +22,10 @@ namespace Infrastructure.Installers
 
         public override void InstallBindings()
         {
-            Container.Bind<UIPanel>().FromInstance(_startPanel);
-            Container.Bind<UIPanel>().FromInstance(_gameplayPanel);
-            Container.Bind<UIPanel>().FromInstance(_winPanel);
-            Container.Bind<UIPanel>().FromInstance(_losePanel);
+            Container.Bind<List<UIPanel>>().FromInstance(new List<UIPanel>
+            {
+                _startPanel, _gameplayPanel, _winPanel, _losePanel
+            });
 
             Container.Install<ConfigsInstaller>();
             Container.Install<InputInstaller>();
@@ -58,3 +60,4 @@ namespace Infrastructure.Installers
         }
     }
 }
+

@@ -1,3 +1,4 @@
+using Application.Core.Services;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -41,3 +42,4 @@ namespace Infrastructure.Input
             IsRunning = false;
     }
 }
+

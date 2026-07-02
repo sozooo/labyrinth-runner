@@ -1,4 +1,4 @@
-using Application.Services;
+using Application.Core.Services;
 using UnityEngine.SceneManagement;
 
 namespace Infrastructure.Services
@@ -9,3 +9,4 @@ namespace Infrastructure.Services
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
+

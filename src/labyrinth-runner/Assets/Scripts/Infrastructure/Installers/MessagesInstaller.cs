@@ -1,5 +1,5 @@
-using Application.Collectibles;
-using Application.Messages;
+using Application.Gameplay.Collectibles;
+using Application.Core.Messages;
 using MessagePipe;
 using Zenject;
 
@@ -17,3 +17,4 @@ namespace Infrastructure.Installers
         }
     }
 }
+

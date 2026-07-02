@@ -1,4 +1,4 @@
-using Application.Enemy;
+using Application.Gameplay.Enemy;
 using UnityEngine;
 using Zenject;
 
@@ -34,3 +34,4 @@ namespace Infrastructure.Installers
         }
     }
 }
+

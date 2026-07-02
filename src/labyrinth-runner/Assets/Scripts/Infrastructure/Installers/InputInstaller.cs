@@ -1,3 +1,4 @@
+using Application.Core.Services;
 using Infrastructure.Input;
 using Zenject;
 
@@ -11,3 +12,4 @@ namespace Infrastructure.Installers
         }
     }
 }
+

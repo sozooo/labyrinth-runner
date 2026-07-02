@@ -1,5 +1,5 @@
-using Application.Services;
-using Application.UI;
+using Application.Core.Services;
+using Application.GameFlow.UI;
 using Infrastructure.Services;
 using Zenject;
 
@@ -14,3 +14,4 @@ namespace Infrastructure.Installers
         }
     }
 }
+

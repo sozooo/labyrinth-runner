@@ -1,4 +1,4 @@
-using Application.States;
+using Application.GameFlow.States;
 using sozooo.GameStateMachine.Factory;
 using sozooo.GameStateMachine.StateMachine;
 using Zenject;
@@ -15,3 +15,4 @@ namespace Infrastructure.Installers
         }
     }
 }
+
