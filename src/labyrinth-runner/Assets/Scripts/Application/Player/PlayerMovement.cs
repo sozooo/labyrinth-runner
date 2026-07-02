@@ -16,9 +16,6 @@ namespace Application.Player
         private void Start() => 
             _transform = transform;
 
-        private void OnEnable() => 
-            _inputHandler.EnableControls(true);
-
         private void Update()
         {
             Vector3 moveDirection = 

@@ -139,9 +139,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Application.Collectibles.Door
   _shutters:
   - transform: {fileID: 4551470913215957227}
-    openOffset: {x: -3, y: 0, z: 0}
+    openRotation: {x: 0, y: -95, z: 0}
   - transform: {fileID: 4626932154487736404}
-    openOffset: {x: 3, y: 0, z: 0}
+    openRotation: {x: 0, y: 95, z: 0}
   _duration: 1
 --- !u!1 &6797270912255795460
 GameObject:
@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 3761518801418936558}
   - component: {fileID: 8277155871077962207}
   - component: {fileID: 3124346384701259602}
+  - component: {fileID: 258915523853852057}
   m_Layer: 0
   m_Name: doorL
   m_TagString: Untagged
@@ -265,6 +266,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &258915523853852057
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7498418368166233086}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.51177967, y: 1.7286336, z: 0.065272205}
+  m_Center: {x: -0.2558896, y: 0, z: 0}
 --- !u!1 &8731958311859418828
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +298,7 @@ GameObject:
   - component: {fileID: 5176232766432143448}
   - component: {fileID: 693509352550593120}
   - component: {fileID: 2328134989416128599}
+  - component: {fileID: 6400449410545812043}
   m_Layer: 0
   m_Name: doorR
   m_TagString: Untagged
@@ -355,3 +378,24 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6400449410545812043
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8731958311859418828}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5937413, y: 1.7286336, z: 0.16845135}
+  m_Center: {x: 0.29687065, y: 0, z: 0}

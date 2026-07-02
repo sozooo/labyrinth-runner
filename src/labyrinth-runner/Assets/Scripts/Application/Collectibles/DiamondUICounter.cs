@@ -28,19 +28,19 @@ namespace Application.Collectibles
             _collectSubscriber = collectSubscriber;
         }
 
-        private void Start()
+        private void OnEnable()
         {
             _spawnSub = _spawnSubscriber.Subscribe(msg => { _total = msg.TotalCount; UpdateUI(); });
             _collectSub = _collectSubscriber.Subscribe(_ => { _collected++; UpdateUI(); });
         }
-
-        private void UpdateUI() => 
-            _counterText.text = $"{_collected} / {_total}";
-
-        private void OnDestroy()
+        
+        private void OnDisable()
         {
             _spawnSub?.Dispose();
             _collectSub?.Dispose();
         }
+
+        private void UpdateUI() => 
+            _counterText.text = $"{_collected} / {_total}";
     }
 }

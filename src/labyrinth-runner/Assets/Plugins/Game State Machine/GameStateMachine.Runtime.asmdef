@@ -1,0 +1,17 @@
+{
+    "name": "GameStateMachine.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "VContainer",
+        "Zenject"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

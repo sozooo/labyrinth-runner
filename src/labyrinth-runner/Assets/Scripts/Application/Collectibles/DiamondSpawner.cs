@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Application.Collectibles
 {
-    public class DiamondSpawner : IInitializable
+    public class DiamondSpawner
     {
         private readonly Diamond.Factory _diamondFactory;
         private readonly Vector3[] _spawnPoints;
@@ -21,7 +21,7 @@ namespace Application.Collectibles
             _publisher = publisher;
         }
 
-        public void Initialize()
+        public void Spawn()
         {
             int count = Random.Range(0, _spawnPoints.Length / 2);
 
