@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Application.Messages;
 using Application.Player;
-using Application.States;
 using Configs;
-using sozooo.GameStateMachine.StateMachine;
+using MessagePipe;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -14,11 +14,11 @@ namespace Application.Enemy
     {
         private EnemyConfig _config;
         private EnemyStateMachine _stateMachine;
-        private IGameStateMachine _gameStateMachine;
+        private IPublisher<PlayerDiedMessage> _publisher;
         private NavMeshAgent _navAgent;
         private readonly Dictionary<Type, IEnemyState> _states = new();
 
-        [Inject] public PlayerBehaviour Player { get; private set; }
+        [Inject] public IPlayer Player { get; private set; }
         [Inject(Id = "PatrolPoints")] public Vector3[] PatrolPoints { get; private set; }
 
         public NavMeshAgent NavAgent => _navAgent;
@@ -35,9 +35,9 @@ namespace Application.Enemy
         public class Factory : PlaceholderFactory<EnemyBehaviour> { }
 
         [Inject]
-        private void Construct(IGameStateMachine gameStateMachine, EnemyConfig config)
+        private void Construct(IPublisher<PlayerDiedMessage> publisher, EnemyConfig config)
         {
-            _gameStateMachine = gameStateMachine;
+            _publisher = publisher;
             _config = config;
         }
 
@@ -64,11 +64,11 @@ namespace Application.Enemy
         }
 
         public void LoseGame() => 
-            _gameStateMachine.Enter<LoseState>();
+            _publisher.Publish(default(PlayerDiedMessage));
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<PlayerBehaviour>(out _))
+            if (other.TryGetComponent<IPlayer>(out _))
                 LoseGame();
         }
     }

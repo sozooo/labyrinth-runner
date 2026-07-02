@@ -1,3 +1,4 @@
+using Application.Player;
 using UnityEngine;
 
 namespace Application.Enemy
@@ -14,16 +15,16 @@ namespace Application.Enemy
         public override void Enter()
         {
             EnemyBehaviour.NavAgent.speed = EnemyBehaviour.ChaseSpeed;
-            _lastKnownPosition = EnemyBehaviour.Player.transform.position;
+                _lastKnownPosition = EnemyBehaviour.Player.Transform.position;
             _lostTimer = 0;
         }
 
         public override void Update()
         {
-            EnemyBehaviour.NavAgent.SetDestination(EnemyBehaviour.Player.transform.position);
+            EnemyBehaviour.NavAgent.SetDestination(EnemyBehaviour.Player.Transform.position);
 
             float distanceToPlayer = Vector3.Distance(
-                EnemyBehaviour.transform.position, EnemyBehaviour.Player.transform.position);
+                EnemyBehaviour.transform.position, EnemyBehaviour.Player.Transform.position);
 
             if (distanceToPlayer <= EnemyBehaviour.AttackDistance)
             {
@@ -34,7 +35,7 @@ namespace Application.Enemy
             if (CheckPlayerDetection())
             {
                 _lostTimer = 0;
-                _lastKnownPosition = EnemyBehaviour.Player.transform.position;
+            _lastKnownPosition = EnemyBehaviour.Player.Transform.position;
             }
             else
             {

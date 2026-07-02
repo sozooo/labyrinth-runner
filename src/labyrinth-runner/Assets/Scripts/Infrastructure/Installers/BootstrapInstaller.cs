@@ -1,13 +1,5 @@
 using Application.Collectibles;
-using Application.Enemy;
-using Application.Player;
-using Application.States;
 using Application.UI;
-using Configs;
-using Infrastructure.Input;
-using MessagePipe;
-using sozooo.GameStateMachine.Factory;
-using sozooo.GameStateMachine.StateMachine;
 using UnityEngine;
 using Zenject;
 
@@ -28,78 +20,31 @@ namespace Infrastructure.Installers
 
         public override void InstallBindings()
         {
-            InstallConfigBindings();
-            InstallPlayerInputBindings();
-            InstallStateMachineBindings();
-            InstallUIBindings();
-            InstallPlayerBindings();
-            InstallEnemyBindings();
+            Container.Bind<UIPanel>().FromInstance(_startPanel);
+            Container.Bind<UIPanel>().FromInstance(_gameplayPanel);
+            Container.Bind<UIPanel>().FromInstance(_winPanel);
+            Container.Bind<UIPanel>().FromInstance(_losePanel);
 
-            var options = Container.BindMessagePipe();
-            InstallDiamondBindings(options);
-
-            Container.BindInterfacesAndSelfTo<DoorOpener>().AsSingle().WithArguments(_doors);
-        }
-
-        private void InstallConfigBindings()
-        {
-            Container.Bind<EnemyConfig>().FromResources("Configs/EnemyConfig").AsSingle();
-            Container.Bind<PlayerConfig>().FromResources("Configs/PlayerConfig").AsSingle();
-            Container.Bind<GameplayConfig>().FromResources("Configs/GameplayConfig").AsSingle();
-        }
-
-        private void InstallPlayerInputBindings() =>
-            Container.BindInterfacesAndSelfTo<PlayerInputHandler>().AsSingle().NonLazy();
-
-        private void InstallStateMachineBindings()
-        {
-            Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle();
-            Container.Bind<IStateFactory>().To<StateFactory>().AsSingle();
-            Container.BindInterfacesTo<EntryPoint>().AsSingle();
-        }
-
-        private void InstallUIBindings()
-        {
-            Container.Bind<UISwitcher>().AsSingle();
-            Container.Bind<StartPanel>().FromInstance(_startPanel).AsSingle();
-            Container.Bind<GameplayPanel>().FromInstance(_gameplayPanel).AsSingle();
-            Container.Bind<WinPanel>().FromInstance(_winPanel).AsSingle();
-            Container.Bind<LosePanel>().FromInstance(_losePanel).AsSingle();
-        }
-
-        private void InstallPlayerBindings()
-        {
-            Container.Bind<PlayerBehaviour>().FromComponentInHierarchy().AsCached();
-        }
-
-        private void InstallEnemyBindings()
-        {
-            Container.Bind<Vector3[]>()
-                .WithId("PatrolPoints")
-                .FromInstance(ExtractChildPositions(_diamondSpawnPointsParent))
-                .AsCached();
-
-            Container.BindFactory<EnemyBehaviour, EnemyBehaviour.Factory>()
-                .FromComponentInNewPrefab(_enemyPrefab)
-                .UnderTransformGroup("Enemies");
-
-            Container.Bind<EnemySpawner>()
-                .AsSingle()
-                .WithArguments(ExtractChildPositions(_enemySpawnPointsParent));
-        }
-
-        private void InstallDiamondBindings(MessagePipeOptions options)
-        {
-            Container.BindMessageBroker<DiamondCollectedMessage>(options);
-            Container.BindMessageBroker<DiamondsSpawnedMessage>(options);
-
-            Container.BindFactory<Diamond, Diamond.Factory>()
-                .FromComponentInNewPrefab(_gemPrefab)
-                .UnderTransformGroup("Diamonds");
-
-            Container.Bind<DiamondSpawner>()
-                .AsSingle()
-                .WithArguments(ExtractChildPositions(_diamondSpawnPointsParent));
+            Container.Install<ConfigsInstaller>();
+            Container.Install<InputInstaller>();
+            Container.Install<StateMachineInstaller>();
+            Container.Install<MessagesInstaller>();
+            Container.Install<UIInstaller>();
+            Container.Install<PlayerInstaller>();
+            
+            Container.Install<EnemyInstaller>(new object[]
+            {
+                _enemyPrefab,
+                ExtractChildPositions(_enemySpawnPointsParent),
+                ExtractChildPositions(_diamondSpawnPointsParent)
+            });
+            
+            Container.Install<DiamondInstaller>(new object[]
+            {
+                _gemPrefab,
+                ExtractChildPositions(_diamondSpawnPointsParent),
+                _doors
+            });
         }
 
         private Vector3[] ExtractChildPositions(Transform parent)

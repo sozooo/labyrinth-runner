@@ -1,5 +1,6 @@
+using Application.Messages;
 using Application.Player;
-using sozooo.GameStateMachine.StateMachine;
+using MessagePipe;
 using UnityEngine;
 using Zenject;
 
@@ -7,16 +8,16 @@ namespace Application.Trigger
 {
     public class ExitTrigger : MonoBehaviour
     {
-        private IGameStateMachine _stateMachine;
+        private IPublisher<ExitReachedMessage> _publisher;
 
         [Inject]
-        private void Construct(IGameStateMachine stateMachine) =>
-            _stateMachine = stateMachine;
+        private void Construct(IPublisher<ExitReachedMessage> publisher) =>
+            _publisher = publisher;
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<PlayerBehaviour>(out _))
-                _stateMachine.Enter<States.WinState>();
+            if (other.TryGetComponent<IPlayer>(out _))
+                _publisher.Publish(default);
         }
     }
 }

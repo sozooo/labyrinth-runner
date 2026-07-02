@@ -8,15 +8,11 @@ namespace Application.UI
         private readonly Dictionary<Type, UIPanel> _panels;
         private UIPanel _activePanel;
 
-        public UISwitcher(StartPanel start, GameplayPanel gameplay, WinPanel win, LosePanel lose)
+        public UISwitcher(List<UIPanel> panels)
         {
-            _panels = new Dictionary<Type, UIPanel>
-            {
-                [typeof(StartPanel)] = start,
-                [typeof(GameplayPanel)] = gameplay,
-                [typeof(WinPanel)] = win,
-                [typeof(LosePanel)] = lose
-            };
+            _panels = new Dictionary<Type, UIPanel>(panels.Count);
+            foreach (var panel in panels)
+                _panels[panel.GetType()] = panel;
         }
 
         public void ShowPanel<T>() where T : UIPanel

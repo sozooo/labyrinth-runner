@@ -1,3 +1,4 @@
+using Application.Player;
 using sozooo.GameStateMachine.StateInfrastructure;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ namespace Application.Enemy
 
         protected bool CheckPlayerDetection()
         {
-            Vector3 directionToPlayer = EnemyBehaviour.Player.transform.position - EnemyBehaviour.transform.position;
+            Vector3 directionToPlayer = EnemyBehaviour.Player.Transform.position - EnemyBehaviour.transform.position;
             float distance = directionToPlayer.magnitude;
 
             if (distance > EnemyBehaviour.DetectionRadius)
@@ -35,7 +36,7 @@ namespace Application.Enemy
                 return false;
 
             if (Physics.Raycast(EnemyBehaviour.transform.position, directionToPlayer.normalized, out RaycastHit hit, distance))
-                return hit.transform == EnemyBehaviour.Player.transform;
+                return hit.transform == EnemyBehaviour.Player.Transform;
 
             return false;
         }
