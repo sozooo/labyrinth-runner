@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2682359884631031428}
   - component: {fileID: 1569413057125791902}
   m_Layer: 0
-  m_Name: Gem
+  m_Name: Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,6 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13850dc29716544db4d67b4ed90b41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Application.Collectibles.Diamond
+  _rotationSpeed: 60
+  _floatFrequency: 1.5
+  _floatAmplitude: 0.15
 --- !u!135 &1569413057125791902
 SphereCollider:
   m_ObjectHideFlags: 0

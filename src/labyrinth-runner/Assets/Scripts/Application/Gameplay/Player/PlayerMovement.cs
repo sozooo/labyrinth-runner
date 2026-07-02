@@ -32,6 +32,7 @@ namespace Application.Gameplay.Player
 
             _verticalVelocity += Physics.gravity.y * Time.deltaTime;
             Vector3 motion = moveDirection * (Time.deltaTime * speed) + Vector3.up * (_verticalVelocity * Time.deltaTime);
+            
             _characterController.Move(motion);
 
             if (_characterController.isGrounded)
