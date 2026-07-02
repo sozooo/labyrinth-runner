@@ -1,6 +1,7 @@
 # Labyrinth Runner
 
 **Время на разработку:** _5 часов в сумме_
+[Releases](https://github.com/sozooo/labyrinth-runner/releases) содержит исходный код и запускаемый билд игры.
 
 ## Управление
 
